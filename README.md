@@ -1,84 +1,84 @@
-# 🚀 Fintech Platform
+# 🏥 Life Clinic Digital Platform
 
-This repository contains the infrastructure and application code for a cloud-native fintech platform built using Crossplane, Kubernetes, and AWS services. The platform is designed to process financial transactions securely and at scale.
+Este repositório contém a infraestrutura e o código de aplicação para a Life Clinic, uma clínica digital voltada ao acolhimento de casais com dificuldade para engravidar. A solução integra ginecologistas e especialistas em reprodução assistida, promovendo acessibilidade, jornada integrada e inteligência artificial para recomendações clínicas, tudo provisionado em cloud (AWS) com Kubernetes e Crossplane.
 
-## 📁 Project Structure
+## 📁 Estrutura do Projeto
 
-- **crossplane/**: Contains configurations for provisioning AWS resources using Crossplane.
-  - **providers/**: AWS provider configurations, including IAM roles and permissions.
-  - **compositions/**: Custom compositions for provisioning the infrastructure stack (VPC, EKS, RDS, ElastiCache, etc.).
-  - **xrds/**: CompositeResourceDefinitions (XRDs) specifying parameters for the fintech platform.
-  - **instances/**: Instances of the defined compositions for actual resource provisioning.
+- **crossplane/**: Configurações para provisionamento de recursos AWS via Crossplane.
+  - **providers/**: Configuração do provider AWS.
+  - **compositions/**: Composições para stack de infraestrutura (VPC, EKS, RDS, ElastiCache, etc.).
+  - **xrds/**: CompositeResourceDefinitions para a plataforma Life Clinic.
+  - **instances/**: Instâncias das composições.
 
-- **k8s/**: Kubernetes manifests and configurations for deploying the application.
-  - **namespaces/**: Namespace configurations for isolating components.
-  - **apps/**: Contains manifests for the microservices.
-    - **transaction-api/**: Manifests for the Transaction API service.
-    - **notification-service/**: Manifests for the Notification Service.
-  - **monitoring/**: Configurations for monitoring tools (Prometheus, Grafana).
-  - **security/**: Security configurations (NetworkPolicies, RBAC).
+- **k8s/**: Manifests Kubernetes para deploy dos serviços.
+  - **namespaces/**: Namespaces para isolar componentes.
+  - **apps/**: Microserviços da plataforma.
+    - **appointment-api/**: API de agendamento de consultas.
+    - **patient-notification-service/**: Serviço de notificações para pacientes.
+    - **medical-records-api/**: API de prontuário digital.
+    - **ai-recommendation-service/**: Serviço de IA para recomendações clínicas.
+  - **monitoring/**: Prometheus, Grafana.
+  - **security/**: NetworkPolicies, RBAC.
 
-- **docker/**: Dockerfiles and related files for building the microservices.
-  - **transaction-api/**: Dockerfile for the Transaction API service.
-  - **notification-service/**: Dockerfile for the Notification Service.
+- **docker/**: Dockerfiles dos microserviços.
+  - **appointment-api/**
+  - **patient-notification-service/**
+  - **medical-records-api/**
+  - **ai-recommendation-service/**
 
-- **docs/**: Documentation files.
-  - **ARCHITECTURE.md**: Architecture documentation with diagrams and component explanations.
-  - **DEPLOYMENT.md**: Instructions for deploying the application and infrastructure.
-  - **TROUBLESHOOTING.md**: Common issues and troubleshooting steps.
-  - **API.md**: API endpoint documentation for the microservices.
+- **docs/**: Documentação.
+  - **ARCHITECTURE.md**: Arquitetura e diagramas.
+  - **DEPLOYMENT.md**: Deploy da infra e apps.
+  - **API.md**: Documentação dos endpoints.
+  - **TROUBLESHOOTING.md**: Troubleshooting.
 
-- **scripts/**: Automation scripts for deployment and testing.
-  - **deploy.sh**: Script to automate the deployment process.
-  - **test.sh**: Script to run tests on the deployed services.
-  - **cleanup.sh**: Script to clean up resources created during deployment.
+- **scripts/**: Scripts de automação.
+  - **deploy.sh**
+  - **test.sh**
+  - **cleanup.sh**
 
-- **drawio/**: Contains the architecture diagram in XML format for use with draw.io.
-  - **architecture.xml**: Architecture diagram file.
+- **drawio/**: Diagramas de arquitetura (draw.io).
 
-## 🛠️ Setup Instructions
+## 🛠️ Instruções de Setup
 
-1. **Prerequisites**: Ensure you have the following installed:
-   - Docker
-   - Kubernetes (kubectl)
-   - Crossplane CLI
-   - AWS CLI
+1. **Pré-requisitos**:
+   - Docker, kubectl, Crossplane CLI, AWS CLI
 
-2. **Clone the Repository**:
+2. **Clone o Repositório**:
    ```bash
-   git clone https://github.com/yourusername/fintech-platform.git
-   cd fintech-platform
+   git clone https://github.com/rlsouza-cyber/life-clinic-digital-platform.git
+   cd life-clinic-digital-platform
    ```
 
-3. **Configure AWS Credentials**: Set up your AWS credentials to allow Crossplane to provision resources.
+3. **Configure as credenciais AWS**.
 
-4. **Deploy Infrastructure**:⚡
-   - Navigate to the `scripts` directory and run:
-     ```bash
-     ./deploy.sh
-     ```
+4. **Provisionamento da Infraestrutura**:
+   ```bash
+   ./scripts/deploy.sh
+   ```
 
-5. **Deploy Applications**:🐳 
-   - Apply the Kubernetes manifests located in `k8s/apps/`.
+5. **Deploy dos Microserviços**:
+   - Aplique os manifests em `k8s/apps/`.
 
-6. **Access the Services**: Use the Application Load Balancer URL to access the Transaction API and Notification Service.
+6. **Acesso aos Serviços**:
+   - Use o endpoint do Load Balancer para acessar as APIs de agendamento, prontuário e recomendações.
 
-## 🏗️ Architectural Decisions
+## 🏗️ Decisões Arquiteturais
 
-- **Microservices Architecture**: The platform is designed using microservices to ensure scalability and maintainability.
-- **Crossplane for Infrastructure Management**: Crossplane is used to provision and manage AWS resources declaratively.
-- **Kubernetes for Orchestration**: Kubernetes is utilized for deploying and managing containerized applications.
+- **Microserviços**: Escalabilidade, resiliência e manutenção facilitada.
+- **Crossplane**: Provisionamento declarativo e seguro na AWS.
+- **Kubernetes**: Orquestração de containers e automação de deploy.
+- **IA**: Serviço dedicado para recomendações clínicas inteligentes.
+- **Segurança**: RBAC, NetworkPolicies e IAM com privilégio mínimo.
+- **Observabilidade**: Monitoramento com Prometheus e Grafana.
 
-## ⚠️ Challenges Faced
+## 🎯 Escopo da POC
 
-- **Resource Provisioning**: Ensuring that all AWS resources are provisioned correctly with the right permissions.
-- **Service Communication**: Implementing effective communication between microservices while maintaining security.
+- Diagrama de contexto e infraestrutura (drawio/architecture.xml)
+- MVP com IA (ai-recommendation-service)
+- Infraestrutura cloud (AWS via Crossplane)
+- Demonstração dos endpoints principais (agendamento, prontuário, recomendação)
 
-## ✅ Solutions Implemented
+## 🎉 Conclusão
 
-- **IAM Roles**: Configured IAM roles with the principle of least privilege for Crossplane.
-- **Service Mesh**: Implemented a service mesh for better service discovery and communication.
-
-## 🎉 Conclusion
-
-This project demonstrates a complete cloud-native fintech platform using modern technologies and best practices. For more detailed information, refer to the documentation files in the `docs/` directory.🔥
+Esta POC demonstra a viabilidade técnica, escalabilidade e alinhamento estratégico de uma clínica digital inteligente, pronta para evoluir e atender demandas reais do setor de saúde reprodutiva. Para detalhes, consulte a documentação em `docs/`.

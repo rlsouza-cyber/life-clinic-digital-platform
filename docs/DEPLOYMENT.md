@@ -1,94 +1,94 @@
-# Deployment Instructions for Fintech Platform
+# Deploy da Life Clinic Digital Platform
 
-This document provides step-by-step instructions for deploying the Fintech Platform, including the necessary infrastructure and application components.
+Este documento fornece instruções passo a passo para implantar a Plataforma Digital da Life Clinic, incluindo a infraestrutura necessária e os componentes do aplicativo.
 
-## Prerequisites
+## Pré-requisitos
 
-Before you begin, ensure you have the following:
+Antes de começar, verifique se você tem o seguinte:
 
-- AWS account with appropriate permissions to create resources.
-- `kubectl` installed and configured to access your Kubernetes cluster.
-- `Crossplane` installed in your Kubernetes cluster.
-- `Docker` installed for building container images.
-- `Helm` installed for managing Kubernetes applications.
+- Conta na AWS com permissões apropriadas para criar recursos.
+- `kubectl` instalado e configurado para acessar seu cluster Kubernetes.
+- `Crossplane` instalado em seu cluster Kubernetes.
+- `Docker` instalado para criar imagens de contêiner.
+- `Helm` instalado para gerenciar aplicativos Kubernetes.
 
-## Step 1: Configure Crossplane
+## Etapa 1: Configurar o Crossplane
 
-1. **Install Crossplane**: Follow the official Crossplane installation guide to set up Crossplane in your Kubernetes cluster.
+1. **Instalar o Crossplane**: Siga o guia de instalação oficial do Crossplane para configurar o Crossplane em seu cluster Kubernetes.
    
-2. **Configure AWS Provider**:
-   - Navigate to the `crossplane/providers` directory.
-   - Apply the AWS provider configuration:
+2. **Configurar o Provedor AWS**:
+   - Navegue até o diretório `crossplane/providers`.
+   - Aplique a configuração do provedor AWS:
      ```
      kubectl apply -f providers/aws-provider.yaml
      ```
 
-3. **Set Up IAM Roles**: Ensure that the IAM roles defined in your provider configuration have the necessary permissions to manage AWS resources.
+3. **Configurar Funções IAM**: Certifique-se de que as funções IAM definidas em sua configuração de provedor tenham as permissões necessárias para gerenciar recursos da AWS.
 
-## Step 2: Provision Infrastructure
+## Etapa 2: Provisionar Infraestrutura
 
-1. **Create Composite Resource Definitions (XRDs)**:
-   - Navigate to the `crossplane/xrds` directory.
-   - Apply the XRDs:
-     kubectl apply -f xrds/fintech-platform-xrd.yaml
+1. **Criar Definições de Recursos Compostos (XRDs)**:
+   - Navegue até o diretório `crossplane/xrds`.
+   - Aplique os XRDs:
+     kubectl apply -f xrds/life-clinic-platform-xrd.yaml
 
-2. **Create Compositions**:
-   - Navigate to the `crossplane/compositions` directory.
-   - Apply the compositions:
-     kubectl apply -f compositions/fintech-platform-composition.yaml
+2. **Criar Composições**:
+   - Navegue até o diretório `crossplane/compositions`.
+   - Aplique as composições:
+     kubectl apply -f compositions/life-clinic-platform-composition.yaml
 
-3. **Provision Instances**:
-   - Navigate to the `crossplane/instances` directory.
-   - Apply the instance configuration:
-     kubectl apply -f instances/fintech-platform-instance.yaml
+3. **Provisionar Instâncias**:
+   - Navegue até o diretório `crossplane/instances`.
+   - Aplique a configuração da instância:
+     kubectl apply -f instances/life-clinic-platform-instance.yaml
 
-## Step 3: Deploy Kubernetes Applications
+## Etapa 3: Implantar Aplicativos Kubernetes
 
-1. **Set Up Namespaces**:
-   - Navigate to the `k8s/namespaces` directory.
-   - Apply the namespace configurations:
-     kubectl apply -f namespaces/fintech-namespace.yaml
+1. **Configurar Namespaces**:
+   - Navegue até o diretório `k8s/namespaces`.
+   - Aplique as configurações de namespace:
+     kubectl apply -f namespaces/life-clinic-namespace.yaml
 
-2. **Deploy Transaction API**:
-   - Navigate to the `k8s/apps/transaction-api` directory.
-   - Apply the deployment and service configurations:
+2. **Implantar API de Transações**:
+   - Navegue até o diretório `k8s/apps/transaction-api`.
+   - Aplique as configurações de implantação e serviço:
 
      kubectl apply -f deployment.yaml
      kubectl apply -f service.yaml
      kubectl apply -f ingress.yaml
 
-3. **Deploy Notification Service**:
-   - Navigate to the `k8s/apps/notification-service` directory.
-   - Apply the deployment and service configurations:
+3. **Implantar Serviço de Notificações**:
+   - Navegue até o diretório `k8s/apps/notification-service`.
+   - Aplique as configurações de implantação e serviço:
 
      kubectl apply -f deployment.yaml
      kubectl apply -f service.yaml
 
-## Step 4: Set Up Monitoring
+## Etapa 4: Configurar Monitoramento
 
-1. **Deploy Monitoring Tools**:
-   - Navigate to the `k8s/monitoring` directory.
-   - Apply the monitoring configurations for Prometheus and Grafana:
+1. **Implantar Ferramentas de Monitoramento**:
+   - Navegue até o diretório `k8s/monitoring`.
+   - Aplique as configurações de monitoramento para Prometheus e Grafana:
 
      kubectl apply -f prometheus.yaml
      kubectl apply -f grafana.yaml
 
 
-## Step 5: Verify Deployment
+## Etapa 5: Verificar Implantação
 
-1. **Check Pod Status**:
-   - Use the following command to check the status of your pods:
-     kubectl get pods -n fintech
+1. **Verificar o Status dos Pods**:
+   - Use o seguinte comando para verificar o status dos seus pods:
+     kubectl get pods -n life-clinic
 
-2. **Access Services**:
-   - Use the Ingress URL to access the Transaction API and Notification Service.
+2. **Acessar Serviços**:
+   - Use a URL do Ingress para acessar a API de Transações e o Serviço de Notificações.
 
-## Step 6: Cleanup Resources
+## Etapa 6: Limpar Recursos
 
-To clean up the resources created during the deployment, run the cleanup script:
+Para limpar os recursos criados durante a implantação, execute o script de limpeza:
 
 ./scripts/cleanup.sh
 
-## Conclusion
+## Conclusão
 
-You have successfully deployed the Fintech Platform. For further details on troubleshooting and API documentation, refer to the respective documents in the `docs` directory.
+Você implantou com sucesso a Plataforma Digital da Life Clinic. Para mais detalhes sobre solução de problemas e documentação da API, consulte os respectivos documentos no diretório `docs`.

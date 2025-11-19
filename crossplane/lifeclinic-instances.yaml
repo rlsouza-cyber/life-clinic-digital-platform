@@ -24,7 +24,7 @@ spec:
       patches:
         - fromFieldPath: "metadata.name"
           toFieldPath: "spec.forProvider.vpcId"
-          
+
     - name: eksCluster
       base:
         apiVersion: eks.aws.crossplane.io/v1alpha1

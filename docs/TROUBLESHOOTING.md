@@ -1,8 +1,8 @@
 # TROUBLESHOOTING.md
 
-# Troubleshooting Guide for Fintech Platform
+# Troubleshooting - Life Clinic Digital Platform
 
-This document outlines common issues that may arise while deploying and running the fintech platform, along with troubleshooting steps and solutions.
+This document outlines common issues that may arise while deploying and running the Life Clinic digital platform, along with troubleshooting steps and solutions.
 
 ## 1. Database Connection Issues
 
@@ -58,4 +58,4 @@ This document outlines common issues that may arise while deploying and running 
 
 ## Conclusion
 
-This troubleshooting guide provides a starting point for diagnosing and resolving common issues encountered in the fintech platform. For further assistance, consult the documentation or reach out to the SRE team.
+This troubleshooting guide provides a starting point for diagnosing and resolving common issues encountered in the Life Clinic digital platform. For further assistance, consult the documentation or reach out to the SRE team.

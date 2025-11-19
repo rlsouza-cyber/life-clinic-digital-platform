@@ -1,15 +1,15 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xfintechplatforms.aws.platform.crossplane.io
+  name: xlifeclinicplatforms.aws.platform.crossplane.io
 spec:
   group: aws.platform.crossplane.io
   names:
-    kind: XFintechPlatform
-    plural: xfintechplatforms
+    kind: XLifeClinicPlatform
+    plural: xlifeclinicplatforms
   claimNames:
-    kind: FintechPlatform
-    plural: fintechplatforms
+    kind: LifeClinicPlatform
+    plural: lifeclinicplatforms
   versions:
     - name: v1alpha1
       served: true

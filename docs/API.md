@@ -1,71 +1,71 @@
-# API Documentation for Fintech Platform
+# API da Life Clinic Digital Platform
 
-## Overview
-This document provides an overview of the API endpoints exposed by the Transaction API and Notification Service microservices in the Fintech Platform. Each endpoint includes the HTTP method, URL, request parameters, and response format.
+## Visão Geral
+Este documento fornece uma visão geral dos endpoints da API expostos pelos microserviços de Agendamento e Serviço de Notificações na plataforma Life Clinic. Cada endpoint inclui o método HTTP, URL, parâmetros de solicitação e formato de resposta.
 
-## Transaction API Service
+## Serviço de Agendamento
 
-### Base URL
-`http://<transaction-api-service-url>:8080`
+### URL Base
+`http://appointment-api.lifeclinic.svc.cluster.local:8080`
 
 ### Endpoints
 
-#### 1. Create Transaction
-- **Method:** POST
-- **URL:** `/transactions`
-- **Request Body:**
+#### 1. Criar Agendamento
+- **Método:** POST
+- **URL:** `/agendamentos`
+- **Corpo da Solicitação:**
   ```json
   {
-    "amount": "number",
-    "currency": "string",
-    "description": "string"
+    "data_hora": "string",
+    "especialidade": "string",
+    "descricao": "string"
   }
   ```
-- **Response:**
-  - **201 Created**
+- **Resposta:**
+  - **201 Criado**
     ```json
     {
       "id": "string",
-      "amount": "number",
-      "currency": "string",
-      "description": "string",
+      "data_hora": "string",
+      "especialidade": "string",
+      "descricao": "string",
       "status": "string",
       "created_at": "string"
     }
     ```
-  - **400 Bad Request**
+  - **400 Solicitação Inválida**
     ```json
     {
-      "error": "string"
+      "erro": "string"
     }
     ```
 
-#### 2. Get Transaction by ID
-- **Method:** GET
-- **URL:** `/transactions/{id}`
-- **Response:**
+#### 2. Obter Agendamento por ID
+- **Método:** GET
+- **URL:** `/agendamentos/{id}`
+- **Resposta:**
   - **200 OK**
     ```json
     {
       "id": "string",
-      "amount": "number",
-      "currency": "string",
-      "description": "string",
+      "data_hora": "string",
+      "especialidade": "string",
+      "descricao": "string",
       "status": "string",
       "created_at": "string"
     }
     ```
-  - **404 Not Found**
+  - **404 Não Encontrado**
     ```json
     {
-      "error": "string"
+      "erro": "string"
     }
     ```
 
-#### 3. Health Check
-- **Method:** GET
+#### 3. Verificar Saúde
+- **Método:** GET
 - **URL:** `/health`
-- **Response:**
+- **Resposta:**
   - **200 OK**
     ```json
     {
@@ -73,64 +73,64 @@ This document provides an overview of the API endpoints exposed by the Transacti
     }
     ```
 
-## Notification Service
+## Serviço de Notificações
 
-### Base URL
-`http://<notification-service-url>:8081`
+### URL Base
+`http://patient-notification-service.lifeclinic.svc.cluster.local:8081`
 
 ### Endpoints
 
-#### 1. Send Notification
-- **Method:** POST
+#### 1. Enviar Notificação
+- **Método:** POST
 - **URL:** `/notify`
-- **Request Body:**
+- **Corpo da Solicitação:**
   ```json
   {
-    "user_id": "string",
-    "message": "string"
+    "usuario_id": "string",
+    "mensagem": "string"
   }
   ```
-- **Response:**
+- **Resposta:**
   - **200 OK**
     ```json
     {
       "status": "string",
-      "message_id": "string"
+      "mensagem_id": "string"
     }
     ```
-  - **400 Bad Request**
+  - **400 Solicitação Inválida**
     ```json
     {
-      "error": "string"
+      "erro": "string"
     }
     ```
 
-#### 2. Get Notifications by User ID
-- **Method:** GET
-- **URL:** `/notifications/{user_id}`
-- **Response:**
+#### 2. Obter Notificações por ID de Usuário
+- **Método:** GET
+- **URL:** `/notifications/{usuario_id}`
+- **Resposta:**
   - **200 OK**
     ```json
     [
       {
-        "message_id": "string",
-        "user_id": "string",
-        "message": "string",
+        "mensagem_id": "string",
+        "usuario_id": "string",
+        "mensagem": "string",
         "timestamp": "string"
       }
     ]
     ```
-  - **404 Not Found**
+  - **404 Não Encontrado**
     ```json
     {
-      "error": "string"
+      "erro": "string"
     }
     ```
 
-#### 3. Health Check
-- **Method:** GET
+#### 3. Verificar Saúde
+- **Método:** GET
 - **URL:** `/health`
-- **Response:**
+- **Resposta:**
   - **200 OK**
     ```json
     {
@@ -138,6 +138,8 @@ This document provides an overview of the API endpoints exposed by the Transacti
     }
     ```
 
-## Notes
-- Ensure to replace `<transaction-api-service-url>` and `<notification-service-url>` with the actual service URLs when making requests.
-- All endpoints should be secured with HTTPS to ensure data privacy and integrity.
+## Notas
+- Certifique-se de utilizar os endpoints reais dos serviços, por exemplo:
+  - `http://appointment-api.lifeclinic.svc.cluster.local:8080`
+  - `http://patient-notification-service.lifeclinic.svc.cluster.local:8081`
+- Todos os endpoints devem ser protegidos com HTTPS para garantir a privacidade e integridade dos dados.

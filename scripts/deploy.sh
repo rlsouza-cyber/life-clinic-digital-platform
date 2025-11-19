@@ -25,14 +25,14 @@ deploy_k8s() {
 # Function to build and push Docker images
 build_docker_images() {
     echo "Building Docker images..."
-    docker build -t fintech-transaction-api:latest ../docker/transaction-api/
-    docker build -t fintech-notification-service:latest ../docker/notification-service/
+    docker build -t lifeclinic-transaction-api:latest ../docker/transaction-api/
+    docker build -t lifeclinic-notification-service:latest ../docker/notification-service/
     
     # Push images to a container registry (e.g., Docker Hub, ECR)
     # Uncomment and configure the following lines if using a registry
     # echo "Pushing Docker images..."
-    # docker push fintech-transaction-api:latest
-    # docker push fintech-notification-service:latest
+    # docker push lifeclinic-transaction-api:latest
+    # docker push lifeclinic-notification-service:latest
 }
 
 # Main deployment function

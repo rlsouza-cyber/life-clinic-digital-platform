@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Cleanup script for the fintech platform
+# Cleanup script for the lifeclinic platform
 
 # Function to delete Kubernetes resources
 cleanup_k8s() {
     echo "Cleaning up Kubernetes resources..."
-    kubectl delete namespace fintech-platform || true
+    kubectl delete namespace lifeclinic-platform || true
     echo "Kubernetes resources cleaned up."
 }
 
@@ -13,7 +13,7 @@ cleanup_k8s() {
 cleanup_aws() {
     echo "Cleaning up AWS resources..."
     # Add commands to delete AWS resources here
-    # Example: aws cloudformation delete-stack --stack-name fintech-platform
+    # Example: aws cloudformation delete-stack --stack-name lifeclinic-platform
     echo "AWS resources cleaned up."
 }
 

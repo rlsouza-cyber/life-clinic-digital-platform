@@ -1,2 +1,42 @@
-# Manifesto de exemplo para patient-notification-service
-# Adicione aqui o deployment, service e outros recursos necessários para o microserviço de notificações para pacientes.
+# Manifesto para patient-notification-service
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patient-notification-service
+  namespace: patient-notification-service
+  labels:
+    app: patient-notification-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: patient-notification-service
+  template:
+    metadata:
+      labels:
+        app: patient-notification-service
+    spec:
+      containers:
+        - name: patient-notification-service
+          image: lifeclinic-docker-repo/patient-notification-service:latest
+          ports:
+            - containerPort: 8081
+          env:
+            - name: ENVIRONMENT
+              value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: patient-notification-service
+  namespace: patient-notification-service
+spec:
+  selector:
+    app: patient-notification-service
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+  type: ClusterIP

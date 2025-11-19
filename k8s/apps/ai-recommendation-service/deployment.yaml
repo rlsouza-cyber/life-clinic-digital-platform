@@ -1,2 +1,41 @@
-# Manifesto de exemplo para ai-recommendation-service
-# Adicione aqui o deployment, service e outros recursos necessários para o microserviço de recomendações clínicas com IA.
+# Manifesto para ai-recommendation-service
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-recommendation-service
+  namespace: ai-recommendation-service
+  labels:
+    app: ai-recommendation-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ai-recommendation-service
+  template:
+    metadata:
+      labels:
+        app: ai-recommendation-service
+    spec:
+      containers:
+        - name: ai-recommendation-service
+          image: lifeclinic-docker-repo/ai-recommendation-service:latest
+          ports:
+            - containerPort: 8083
+          env:
+            - name: ENVIRONMENT
+              value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-recommendation-service
+  namespace: ai-recommendation-service
+spec:
+  selector:
+    app: ai-recommendation-service
+  ports:
+    - protocol: TCP
+      port: 8083
+      targetPort: 8083
+  type: ClusterIP

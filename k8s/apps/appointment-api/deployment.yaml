@@ -1,2 +1,41 @@
-# Manifesto de exemplo para appointment-api
-# Adicione aqui o deployment, service e outros recursos necessários para o microserviço de agendamento de consultas.
+# Manifesto para appointment-api
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointment-api
+  namespace: appointment-api
+  labels:
+    app: appointment-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: appointment-api
+  template:
+    metadata:
+      labels:
+        app: appointment-api
+    spec:
+      containers:
+        - name: appointment-api
+          image: lifeclinic-docker-repo/appointment-api:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENVIRONMENT
+              value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: appointment-api
+  namespace: appointment-api
+spec:
+  selector:
+    app: appointment-api
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP

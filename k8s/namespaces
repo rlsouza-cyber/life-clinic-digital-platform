@@ -6,12 +6,22 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: transaction-api
+  name: appointment-api
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: notification-service
+  name: patient-notification-service
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: medical-records-api
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ai-recommendation-service
 ---
 apiVersion: v1
 kind: Namespace

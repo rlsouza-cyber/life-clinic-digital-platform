@@ -1,2 +1,41 @@
-# Manifesto de exemplo para medical-records-api
-# Adicione aqui o deployment, service e outros recursos necessários para o microserviço de prontuário digital.
+# Manifesto para medical-records-api
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: medical-records-api
+  namespace: medical-records-api
+  labels:
+    app: medical-records-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: medical-records-api
+  template:
+    metadata:
+      labels:
+        app: medical-records-api
+    spec:
+      containers:
+        - name: medical-records-api
+          image: lifeclinic-docker-repo/medical-records-api:latest
+          ports:
+            - containerPort: 8082
+          env:
+            - name: ENVIRONMENT
+              value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: medical-records-api
+  namespace: medical-records-api
+spec:
+  selector:
+    app: medical-records-api
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+  type: ClusterIP

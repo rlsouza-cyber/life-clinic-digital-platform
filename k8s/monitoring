@@ -1,4 +1,4 @@
-# Monitoring Configuration for Prometheus and Grafana
+# Manifesto para Prometheus e Grafana
 
 apiVersion: v1
 kind: Namespace
